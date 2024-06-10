@@ -1,20 +1,13 @@
 plugins {
-<<<<<<< HEAD
     id 'java'
     id 'io.qameta.allure' version '2.9.6'
     id "io.freefair.lombok" version "8.2.2"
-=======
-	id 'java'
-	id 'org.springframework.boot' version '3.3.0'
-	id 'io.spring.dependency-management' version '1.1.5'
->>>>>>> c399e14df2b6b9524f2b986317c73e719612da1b
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 java {
-<<<<<<< HEAD
     sourceCompatibility = '17'
 }
 
@@ -72,35 +65,4 @@ allure {
     version = '2.26.0'
     autoconfigure = true
     aspectjweaver = true
-=======
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
->>>>>>> c399e14df2b6b9524f2b986317c73e719612da1b
 }
