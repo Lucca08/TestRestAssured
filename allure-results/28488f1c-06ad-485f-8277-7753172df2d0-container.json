@@ -1,0 +1,1 @@
+{"uuid":"28488f1c-06ad-485f-8277-7753172df2d0","name":"Deve retornar 201 ao criar um novo usuário e validar os campos da resposta","children":["b82fc635-9b78-48c6-9df0-e1ca722debea"],"befores":[],"afters":[],"links":[],"start":1718044763879,"stop":1718044764274}

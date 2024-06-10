@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class BaseTeste {
 
+    
+
     @BeforeAll
     public static void setUp() {
         RestAssured.baseURI = "http://localhost";

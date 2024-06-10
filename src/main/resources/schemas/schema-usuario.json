@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "email": {
+        "type": "string"
+      },
+      "nome": {
+        "type": "string"
+      },
+      "sobrenome": {
+        "type": "string"
+      },
+      "cpf": {
+        "type": "string"
+      },
+      "admin": {
+        "type": "boolean"
+      }
+    },
+    "required": ["id", "email", "nome", "sobrenome", "cpf", "admin"]
+  }
+  
