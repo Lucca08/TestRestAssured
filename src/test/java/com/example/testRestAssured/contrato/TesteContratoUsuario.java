@@ -24,10 +24,7 @@ public class TesteContratoUsuario extends BaseTeste {
     private static final String ADMIN_EMAIL = "admin@email.com";
     private static final String ADMIN_PASSWORD = "admin123";
     private static final String HEADER_AUTHORIZATION = "Authorization";
-    private static final String ENDPOINT_CREATE_PAUTA = "/pauta";
-    private static final String ENDPOINT_ABRIR_SESSAO_VOTACAO = "votacao/abrir";
-    private static final String ENDPOINT_VOTO_INTERNO = "votacao/votoInterno";
-    private static final String ENDPOINT_VOTO_EXTERNO = "votacao/votoExterno";
+
     
      @BeforeAll
     @DisplayName("Deve fazer login como administrador")
@@ -49,7 +46,6 @@ public class TesteContratoUsuario extends BaseTeste {
     @Test
     @DisplayName("Deve retornar 201 ao criar um novo usuário e validar os campos da resposta")
     public void deveRetornar201AoCriarUmUsuario() {
-        // Seu código de preparação para criar um novo usuário...
 
         Login autenticacaoDados = Login.builder()
             .email("novousuarioDacasa10@email.com")
