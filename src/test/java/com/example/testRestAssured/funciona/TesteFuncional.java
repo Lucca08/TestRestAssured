@@ -58,29 +58,6 @@ public class TesteFuncional extends BaseTeste {
 
 
     @Test
-    @DisplayName("Deve fazer login e validar os campos da resposta")
-    public void deveFazerLoginEValidarCamposDaResposta() {
-        String loginEmail = "novousuario07@email.com";
-        String loginSenha = "senha123";
-
-        String loginPayload = "{ \"email\": \"" + loginEmail + "\", \"senha\": \"" + loginSenha + "\" }";
-
-        Response response = given()
-            .body(loginPayload)
-            .contentType(ContentType.JSON)
-            .when()
-            .post(ENDPOINT_LOGIN);
-
-        System.out.println("Corpo da Resposta: " + response.getBody().asString());
-
-        response.then()
-            .log().all()
-            .statusCode(200)
-            .body("token", notNullValue())  
-            .body("admin", equalTo(true)); 
-    }
-
-    @Test
     @DisplayName("Deve retornar 401 ao tentar fazer login com credenciais inválidas")
     public void deveRetornar401AoFazerLoginComCredenciaisInvalidas() {
         String loginPayload = "{ \"email\": \"invalido@email.com\", \"senha\": \"senhaerrada\" }";
@@ -103,7 +80,7 @@ public class TesteFuncional extends BaseTeste {
     @DisplayName("Deve criar um novo usuário e validar os campos da resposta")
     public void deveRetornar201aoCriarUmUsuarioAdmin() {
         Login autenticacaoDados = Login.builder()
-            .email("novousuario07@email.com")
+            .email("novousuario02@email.com")
             .senha("senha123")
             .build();
     
@@ -111,7 +88,7 @@ public class TesteFuncional extends BaseTeste {
             .autenticacaoDto(autenticacaoDados)
             .nome("Novo")
             .sobrenome("Usuario")
-            .cpf("89304303207")
+            .cpf("89304303333")
             .admin(true)
             .build();
     
@@ -130,10 +107,10 @@ public class TesteFuncional extends BaseTeste {
             .log().all() 
             .statusCode(201)
             .body("id", notNullValue()) 
-            .body("email", equalTo("novousuario07@email.com")) 
+            .body("email", equalTo("novousuario02@email.com")) 
             .body("nome", equalTo("Novo")) 
             .body("sobrenome", equalTo("Usuario")) 
-            .body("cpf", equalTo("89304303207")) 
+            .body("cpf", equalTo("89304303333")) 
             .body("admin", equalTo(true)); 
     }
 
@@ -151,7 +128,7 @@ public class TesteFuncional extends BaseTeste {
             .autenticacaoDto(autenticacaoDados)
             .nome("usuario")
             .sobrenome("padrao")
-            .cpf("89304303213")
+            .cpf("89304303223")
             .admin(false)
             .build();
     
@@ -173,23 +150,46 @@ public class TesteFuncional extends BaseTeste {
             .body("email", equalTo("normal03@email.com")) 
             .body("nome", equalTo("usuario")) 
             .body("sobrenome", equalTo("padrao")) 
-            .body("cpf", equalTo("89304303213")) 
+            .body("cpf", equalTo("89304303223")) 
             .body("admin", equalTo(false)); 
+    }
+
+    @Test
+    @DisplayName("Deve fazer login e validar os campos da resposta")
+    public void DeveRetornar200AoFazerLoginEValidarCamposDaResposta() {
+        String loginEmail = "novousuario02@email.com";
+        String loginSenha = "senha123";
+
+        String loginPayload = "{ \"email\": \"" + loginEmail + "\", \"senha\": \"" + loginSenha + "\" }";
+
+        Response response = given()
+            .body(loginPayload)
+            .contentType(ContentType.JSON)
+            .when()
+            .post(ENDPOINT_LOGIN);
+
+        System.out.println("Corpo da Resposta: " + response.getBody().asString());
+
+        response.then()
+            .log().all()
+            .statusCode(200)
+            .body("token", notNullValue())  
+            .body("admin", equalTo(true)); 
     }
 
     @Test
     @DisplayName("Deve retornar 400 ao tentar criar um usuário com campos obrigatórios ausentes")
     public void deveRetornar400AoCriarUsuarioComCamposAusentes() {
         Login autenticacaoDados = Login.builder()
-            .email("usuariosemnome@email.com")
+            .email("usuariosemnome4@email.com")
             .senha("senha123")
             .build();
 
         Usuario novoUsuario = Usuario.builder()
             .autenticacaoDto(autenticacaoDados)
-            .cpf("89304303215")
+            .cpf("89304303216")
             .admin(false)
-            .sobrenome("soSobrenome")
+            .sobrenome("Sobrenome")
             .build();
 
         System.out.println("Corpo da Solicitação: " + novoUsuario.toString());
@@ -264,7 +264,7 @@ public class TesteFuncional extends BaseTeste {
     @DisplayName("Deve criar uma pauta e validar os campos da resposta")
     public void deveRetornar201aoCriarUmaPauta() {
         Pauta novaPauta = Pauta.builder()
-            .assunto("Assunto da Pauta3")
+            .assunto("Assunto da Pauta9")
             .categoria("TRANSPORTE")
             .build();
 
@@ -283,7 +283,7 @@ public class TesteFuncional extends BaseTeste {
             .log().all()
             .statusCode(201)
             .body("id", notNullValue())
-            .body("assunto", equalTo("Assunto da Pauta2"))
+            .body("assunto", equalTo("Assunto da Pauta9"))
             .body("categoria", equalTo("TRANSPORTE"));
     }
 
@@ -317,8 +317,8 @@ public class TesteFuncional extends BaseTeste {
     @DisplayName("Deve abrir a votação de uma pauta e validar os campos da resposta")
     public void deveRetornar200aoAbrirVotacaoDeUmaPauta() {
         AbrirSessao abrirSessao = AbrirSessao.builder()
-            .minutos(1L)
-            .pautaId(11)
+            .minutos(2L)
+            .pautaId(25)
             .build();
 
         System.out.println("Corpo da Solicitação: " + abrirSessao.toString());
@@ -338,7 +338,7 @@ public class TesteFuncional extends BaseTeste {
             .log().all()
             .statusCode(200)
             .body("id", notNullValue())
-            .body("pautaId", equalTo(11))
+            .body("pautaId", equalTo(25))
             .body("votosPositivos", equalTo(0))
             .body("votosNegativos", equalTo(0))
             .body("dataAbertura", notNullValue())
@@ -347,75 +347,35 @@ public class TesteFuncional extends BaseTeste {
         }
 
         @Test
-        @DisplayName("Deve votar positivamente na pauta voto interno")
-        public void deveRetornar200aoFazerVotoInternoPositivo() {
+        @DisplayName("Deve retornar erro ao criador da pauta tentar votar")
+        public void deveRetornarErroAoCriadorDaPautaVotar() {
             VotoInterno votoInterno = VotoInterno.builder()
-                .pautaId(10)
+                .pautaId(25)
                 .tipoDeVoto(TipoDeVoto.VOTO_POSITIVO)
                 .build();
-    
-            System.out.println("Corpo da Solicitação: " + votoInterno.toString());
-    
+        
             Response response = given()
                 .header(HEADER_AUTHORIZATION, tokenAdmin)
                 .body(votoInterno)
                 .contentType(ContentType.JSON)
             .when()
                 .patch(ENDPOINT_VOTO_INTERNO);
-    
+        
             System.out.println("Status Code: " + response.getStatusCode());
             System.out.println("Corpo da Resposta: " + response.getBody().asString());
-    
+        
             response.then()
                 .log().all()
-                .statusCode(200)
-                .body("id", notNullValue())
-                .body("pautaId", equalTo(1))
-                .body("votosPositivos", equalTo(1))
-                .body("votosNegativos", equalTo(0))
-                .body("dataAbertura", notNullValue())
-                .body("dataFechamento", notNullValue())
-                .body("sessaoAtiva", equalTo(true));
+                .statusCode(400) 
+                .body("erro", equalTo("O criador não pode votar na pauta criada.")); 
         }
-
-
-        @Test
-        @DisplayName("Deve votar negativamente na pauta voto interno")
-        public void deveRetornar200aoFazerVotoInternoNegativo() {
-            VotoInterno votoInterno = VotoInterno.builder()
-                .pautaId(10)
-                .tipoDeVoto(TipoDeVoto.VOTO_NEGATIVO)
-                .build();
-    
-            System.out.println("Corpo da Solicitação: " + votoInterno.toString());
-    
-            Response response = given()
-                .header(HEADER_AUTHORIZATION, tokenAdmin)
-                .body(votoInterno)
-                .contentType(ContentType.JSON)
-            .when()
-                .patch(ENDPOINT_VOTO_INTERNO);
-    
-            System.out.println("Status Code: " + response.getStatusCode());
-            System.out.println("Corpo da Resposta: " + response.getBody().asString());
-    
-            response.then()
-                .log().all()
-                .statusCode(200)
-                .body("id", notNullValue())
-                .body("pautaId", equalTo(1))
-                .body("votosPositivos", equalTo(1))
-                .body("votosNegativos", equalTo(1))
-                .body("dataAbertura", notNullValue())
-                .body("dataFechamento", notNullValue())
-                .body("sessaoAtiva", equalTo(true));
-    }
+        
 
     @Test
     @DisplayName("Deve votar positivamente na pauta voto externo")
     public void deveRetornar200aoFazerVotoExternoPositivo() {
         VotoExterno votoExterno = VotoExterno.builder()
-            .pautaId(11)
+            .pautaId(25)
             .tipoDeVoto(TipoDeVoto.VOTO_POSITIVO)
             .cpf("89304303207")
             .senha("senha123")
@@ -437,7 +397,7 @@ public class TesteFuncional extends BaseTeste {
             .log().all()
             .statusCode(200)
             .body("id", notNullValue())
-            .body("pautaId", equalTo(11))
+            .body("pautaId", equalTo(25))
             .body("votosPositivos", equalTo(1))
             .body("votosNegativos", equalTo(0))
             .body("dataAbertura", notNullValue())
@@ -445,7 +405,33 @@ public class TesteFuncional extends BaseTeste {
             .body("sessaoAtiva", equalTo(true));
     }
 
+    @Test
+    @DisplayName("Deve votar negativamente na pauta voto externo")
+    public void deveRetornar200aoFazerVotoExternoNegativo() {
+        VotoExterno votoExterno = VotoExterno.builder()
+            .pautaId(25)
+            .tipoDeVoto(TipoDeVoto.VOTO_NEGATIVO)
+            .cpf("89304303207")
+            .senha("senha123")
+            .build();
 
+        System.out.println("Corpo da Solicitação: " + votoExterno.toString());
+
+        Response response = given()
+            .header(HEADER_AUTHORIZATION, tokenAdmin)
+            .body(votoExterno)
+            .contentType(ContentType.JSON)
+        .when()
+            .patch(ENDPOINT_VOTO_EXTERNO);
+
+        System.out.println("Status Code: " + response.getStatusCode());
+        System.out.println("Corpo da Resposta: " + response.getBody().asString());
+
+        response.then()
+            .log().all()
+            .statusCode(400)
+            .body("erro", equalTo("Não é possível votar duas vezes."));
+        }
 
 
 }

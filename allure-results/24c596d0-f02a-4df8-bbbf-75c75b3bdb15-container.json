@@ -1,0 +1,1 @@
+{"uuid":"24c596d0-f02a-4df8-bbbf-75c75b3bdb15","name":"[2] {nome=Usuario, senha=senha123, email=usuariosemsobrenome@email.com, expectedErrors=[Sobrenome deve ser informado.], cpf=89304303216, admin=false}","children":["e368e4b1-3339-498d-a0ea-d614bf00662e"],"befores":[],"afters":[],"links":[],"start":1718134045818,"stop":1718134045878}

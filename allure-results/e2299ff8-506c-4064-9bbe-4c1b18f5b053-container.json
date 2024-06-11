@@ -1,1 +1,0 @@
-{"uuid":"e2299ff8-506c-4064-9bbe-4c1b18f5b053","name":"[5] {admin=false, sobrenome=Sobrenome, nome=Usuario, senha=senha123, email=usuariosemcpf@email.com, expectedErrors=[Cpf deve conter 11 caracteres numéricos.]}","children":["8d744f75-0ba3-420d-a2c9-0d82a3f93fad"],"befores":[],"afters":[],"links":[],"start":1718110753329,"stop":1718110753375}
