@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Este projeto realiza testes automatizados utilizando RestAssured para validação da API de Votacao
+Este projeto realiza testes automatizados utilizando RestAssured para validação da API de Votacao.
 
 ## 1-Pré-requisitos 
 
@@ -60,5 +60,4 @@ Este projeto realiza testes automatizados utilizando RestAssured para validaçã
 
 ## 9-Allure bug
 
-O Allure ao rodar os testes finais, não queria passar ao ser gerados pelo Allure, mas eles funcionam, só tem que modificar os id para os ids da
-pauta que foi aberta.
+Rodandos os testes individualmente e mudando os ids manualmente, para o id da pauta que você gerou anteriormente nos testes, eles rodam certinho e passam em todos os testes, mas na hora de gerar o relatorio, o Allure conta eles como testes que não passaram, provavelmente por causa do banco de dados e da geração por id, mas todos os testes estão passando.
