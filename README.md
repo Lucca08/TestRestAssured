@@ -56,7 +56,7 @@ Este projeto realiza testes automatizados utilizando RestAssured para validaçã
 
 ## 8-Relatório gerado pelo Allure:
 
-![Imagem do Relatório](src\main\resources\img\relatorio.png)
+![Imagem do Relatório](src/main/resources/img/relatorio.png)
 
 ## 9-Allure bug
 
