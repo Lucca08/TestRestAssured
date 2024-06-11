@@ -1,0 +1,1 @@
+{"uuid":"1f80e9fd-2d00-4e36-a690-dcf678b036d6","name":"Deve retornar 400 ao tentar criar um usuário com campos obrigatórios ausentes","children":["d2d268ff-1abf-4555-8659-e41836cdc8ec"],"befores":[],"afters":[],"links":[],"start":1718109825731,"stop":1718109826147}

@@ -48,7 +48,7 @@ public class TesteContratoUsuario extends BaseTeste {
     public void deveRetornar201AoCriarUmUsuario() {
 
         Login autenticacaoDados = Login.builder()
-            .email("novousuarioDacasa10@email.com")
+            .email("novousuarioDacasa20@email.com")
             .senha("senha123")
             .build();
     
@@ -56,7 +56,7 @@ public class TesteContratoUsuario extends BaseTeste {
             .autenticacaoDto(autenticacaoDados)
             .nome("Lucca")
             .sobrenome("Garcia")
-            .cpf("89304303111")
+            .cpf("89304303112")
             .admin(true)
             .build();
     
@@ -73,10 +73,10 @@ public class TesteContratoUsuario extends BaseTeste {
             .statusCode(201)
             .body(matchesJsonSchemaInClasspath("schemas/schema-usuario.json"))
             .body("id", notNullValue()) 
-            .body("email", equalTo("novousuarioDacasa10@email.com")) 
+            .body("email", equalTo("novousuarioDacasa20@email.com")) 
             .body("nome", equalTo("Lucca")) 
             .body("sobrenome", equalTo("Garcia")) 
-            .body("cpf", equalTo("89304303111")) 
+            .body("cpf", equalTo("89304303112")) 
             .body("admin", equalTo(true)); 
        
     }
