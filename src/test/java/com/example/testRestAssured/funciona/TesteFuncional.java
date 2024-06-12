@@ -6,6 +6,9 @@ import static org.hamcrest.Matchers.*;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpStatus;
+import org.apache.http.protocol.HTTP;
+import org.checkerframework.checker.units.qual.h;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,7 +54,7 @@ public class TesteFuncional extends BaseTeste {
             .when()
             .post(ENDPOINT_LOGIN)
             .then()
-            .statusCode(200)
+            .statusCode(HttpStatus.SC_OK)
             .extract()
             .path("token");
     }
@@ -72,7 +75,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(401);
+            .statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 
 
@@ -105,7 +108,7 @@ public class TesteFuncional extends BaseTeste {
     
         response.then()
             .log().all() 
-            .statusCode(201)
+            .statusCode(HttpStatus.SC_CREATED)
             .body("id", notNullValue()) 
             .body("email", equalTo("novousuario02@email.com")) 
             .body("nome", equalTo("Novo")) 
@@ -145,7 +148,7 @@ public class TesteFuncional extends BaseTeste {
     
         response.then()
             .log().all() 
-            .statusCode(201)
+            .statusCode(HttpStatus.SC_CREATED)
             .body("id", notNullValue()) 
             .body("email", equalTo("normal03@email.com")) 
             .body("nome", equalTo("usuario")) 
@@ -172,7 +175,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(200)
+            .statusCode(HttpStatus.SC_OK)
             .body("token", notNullValue())  
             .body("admin", equalTo(true)); 
     }
@@ -205,7 +208,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(400)
+            .statusCode(HttpStatus.SC_BAD_REQUEST)
             .body("erro", containsString("Nome deve ser informado."));
     }
 
@@ -252,7 +255,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(400);
+            .statusCode(HttpStatus.SC_BAD_REQUEST);
 
         List<String> expectedErrors = (List<String>) dadosParaTeste.get("expectedErrors");
         for (String expectedError : expectedErrors) {
@@ -281,7 +284,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(201)
+            .statusCode(HttpStatus.SC_CREATED)
             .body("id", notNullValue())
             .body("assunto", equalTo("Assunto da Pauta9"))
             .body("categoria", equalTo("TRANSPORTE"));
@@ -308,7 +311,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(400)
+            .statusCode(HttpStatus.SC_BAD_REQUEST)
             .body("erro", containsString("Assunto deve ser informado"));
     }
 
@@ -336,7 +339,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(200)
+            .statusCode(HttpStatus.SC_OK)
             .body("id", notNullValue())
             .body("pautaId", equalTo(25))
             .body("votosPositivos", equalTo(0))
@@ -366,7 +369,7 @@ public class TesteFuncional extends BaseTeste {
         
             response.then()
                 .log().all()
-                .statusCode(400) 
+                .statusCode(HttpStatus.SC_BAD_REQUEST) 
                 .body("erro", equalTo("O criador não pode votar na pauta criada.")); 
         }
         
@@ -395,7 +398,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(200)
+            .statusCode(HttpStatus.SC_OK)
             .body("id", notNullValue())
             .body("pautaId", equalTo(25))
             .body("votosPositivos", equalTo(1))
@@ -407,7 +410,7 @@ public class TesteFuncional extends BaseTeste {
 
     @Test
     @DisplayName("Deve votar negativamente na pauta voto externo")
-    public void deveRetornar200aoFazerVotoExternoNegativo() {
+    public void deveRetornar400aoFazerVotoExternoNegativo() {
         VotoExterno votoExterno = VotoExterno.builder()
             .pautaId(25)
             .tipoDeVoto(TipoDeVoto.VOTO_NEGATIVO)
@@ -429,7 +432,7 @@ public class TesteFuncional extends BaseTeste {
 
         response.then()
             .log().all()
-            .statusCode(400)
+            .statusCode(HttpStatus.SC_BAD_REQUEST)
             .body("erro", equalTo("Não é possível votar duas vezes."));
         }
 

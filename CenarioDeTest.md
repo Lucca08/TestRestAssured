@@ -31,4 +31,4 @@ Credenciais Invalidas
 
 - CT0013 -Deve Retornar 200 ao Fazer Voto Externo Positivo
 
-- CT0014 -Deve Retornar 200 ao Fazer Voto Externo Negativo
+- CT0014 -Deve Retornar 400 ao Fazer Voto Externo Negativo
